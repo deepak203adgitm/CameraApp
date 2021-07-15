@@ -1,6 +1,6 @@
 let video = document.querySelector("video");
 let recordVideo = document.querySelector(".Record-video");
-let captureVideo = document.querySelector(".Capture-video");
+let  photoButton = document.querySelector(".Capture-video");
 let constraints = { video: true };
 let recordData;
 var mediaRecorder;
@@ -44,6 +44,8 @@ let state = false;
         state = !state;
     })
 
+    photoButton.addEventListener("click", capturePhotos);
+
 
 })();
 
@@ -63,3 +65,20 @@ aTag.remove();
 
 
 }
+
+
+function capturePhotos() {
+    let canvas = document.createElement("canvas");
+    canvas.height = video.videoHeight;
+    canvas.width = video.videoWidth;
+  
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(video, 0, 0);
+  
+    let imageUrl = canvas.toDataURL("image/jpg"); //canvas object => file url String
+  
+    let aTag = document.createElement("a");
+    aTag.download = "photo.jpg";
+    aTag.href = imageUrl;
+    aTag.click();
+  }
