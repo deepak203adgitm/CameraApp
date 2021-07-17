@@ -1,11 +1,18 @@
 let video = document.querySelector("video");
 let recordVideo = document.querySelector(".Record-video");
 let  photoButton = document.querySelector(".Capture-photo");
+let zoomIn = document.querySelector("#in");
+let zoomOut = document.querySelector("#out");
 let constraints = { video: true };
 let recordData;
 var mediaRecorder;
 
 let state = false;
+
+
+let maxZoom = 3;
+let minZoom = 1;
+let currZoom = 1;
 
 
 (async function () {
@@ -49,6 +56,22 @@ let state = false;
     })
 
     photoButton.addEventListener("click", capturePhotos);
+
+
+    zoomIn.addEventListener("click" , function(){
+      if(currZoom + 0.1 <= maxZoom){
+        currZoom += 0.1;
+        video.style.transform = `scale(${currZoom})`;
+      }
+    });
+    zoomOut.addEventListener("click" , function(){
+      if(currZoom - 0.1 >= minZoom){
+        currZoom -= 0.1;
+        video.style.transform = `scale(${currZoom})`;
+      }
+    });
+
+
 
 
 })();
