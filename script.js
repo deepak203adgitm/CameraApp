@@ -1,6 +1,6 @@
 let video = document.querySelector("video");
 let recordVideo = document.querySelector(".Record-video");
-let  photoButton = document.querySelector(".Capture-video");
+let  photoButton = document.querySelector(".Capture-photo");
 let constraints = { video: true };
 let recordData;
 var mediaRecorder;
@@ -37,8 +37,8 @@ let state = false;
     recordVideo.addEventListener("click", function () {
 
         if (state) 
-        mediaRecorder.stop(), recordVideo.innerHTML ="Record";
-        else if (!state) mediaRecorder.start(), recordVideo.innerHTML ="Recording";
+        mediaRecorder.stop();
+        else if (!state) mediaRecorder.start(); 
 
 
         state = !state;
