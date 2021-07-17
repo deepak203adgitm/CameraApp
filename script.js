@@ -36,11 +36,15 @@ let state = false;
 
     recordVideo.addEventListener("click", function () {
 
-        if (state) 
+        if (state) {
         mediaRecorder.stop();
-        else if (!state) mediaRecorder.start(); 
+        recordVideo.classList.remove("record-animate");
 
-
+        }
+        else if (!state) { 
+            recordVideo.classList.add("record-animate");
+            mediaRecorder.start();
+        }
         state = !state;
     })
 
@@ -68,6 +72,13 @@ aTag.remove();
 
 
 function capturePhotos() {
+
+    photoButton.querySelector("div").classList.add("capture-animate");
+  // async
+  setTimeout(function(){
+    photoButton.querySelector("div").classList.remove("capture-animate");
+  } , 1000);
+
     let canvas = document.createElement("canvas");
     canvas.height = video.videoHeight;
     canvas.width = video.videoWidth;
