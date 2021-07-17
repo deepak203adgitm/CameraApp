@@ -107,6 +107,12 @@ function capturePhotos() {
     canvas.width = video.videoWidth;
   
     let ctx = canvas.getContext("2d");
+    if(currZoom != 1){
+      ctx.translate(canvas.width/2 , canvas.height/2);
+      ctx.scale(currZoom , currZoom);
+      ctx.translate(-canvas.width/2 , -canvas.height/2)
+    }
+  
     ctx.drawImage(video, 0, 0);
   
     let imageUrl = canvas.toDataURL("image/jpg"); //canvas object => file url String
